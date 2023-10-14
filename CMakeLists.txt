@@ -19,15 +19,6 @@ set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
 # Downloads CPM if not already downloaded. CPM is an easy-to-use package manager nicely integrated with CMake.
 include(cmake/cpm.cmake)
 
-# This commands downloads AND configures JUCE. It sets up some variables, like JUCE_SOURCE_DIR.
-CPMAddPackage(
-    NAME JUCE
-    GIT_TAG 7.0.5
-    VERSION 7.0.5
-    GITHUB_REPOSITORY juce-framework/JUCE
-    SOURCE_DIR ${LIB_DIR}/juce
-)
-
 # Adds googletest.
 CPMAddPackage(
     NAME GOOGLETEST
@@ -46,13 +37,12 @@ enable_testing()
 # Enables all warnings and treats warnings as errors.
 # This needs to be added AFTER all the third-party dependencies.
 if(MSVC)
-    add_compile_options(/Wall /WX)
+    add_compile_options(/Wall)
 else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Adds all the targets configured in the "plugin" folder.
-add_subdirectory(plugin)
+add_library(examples STATIC source/FractionalDelayLine.cpp)
 
 # Adds all the targets configured in the "test" folder.
 add_subdirectory(test)
