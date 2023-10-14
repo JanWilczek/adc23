@@ -2,15 +2,14 @@
 #include <array>
 
 namespace DL {
-
 class FractionalDelayLine {
- public:
+public:
   float popSample();
   float popSampleNew();
   void pushSample(float inputSample);
   void setDelay(float newDelay);
 
- private:
+private:
   static constexpr auto MAX_DELAY = 48000u;
   std::array<float, MAX_DELAY> buffer{};
 
