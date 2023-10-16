@@ -31,6 +31,14 @@ CPMAddPackage(
         "gtest_force_shared_crt ON"
 )
 
+CPMAddPackage(
+    NAME AUDIOFILE
+    GITHUB_REPOSITORY adamstark/AudioFile
+    GIT_TAG 1.1.1
+    VERSION 1.1.1
+    SOURCE_DIR ${LIB_DIR}/audiofile
+)
+
 # This command allows running tests from the "build" folder (the one where CMake generates the project to).
 enable_testing()
 

@@ -21,6 +21,19 @@ target_link_libraries(${PROJECT_NAME}
         examples
         GTest::gtest_main)
 
+add_executable(OutputTest
+    source/OutputTest.cpp)
+
+target_include_directories(OutputTest
+    PRIVATE
+        ${AUDIOFILE_SOURCE_DIR}
+        ${GOOGLETEST_SOURCE_DIR}/googletest/include)
+
+# Thanks to the fact that we link against the gtest_main library, we don't have to write the main function ourselves.
+target_link_libraries(OutputTest
+    PRIVATE
+        GTest::gtest_main)
+
 # Adds googletest-specific CMake commands at our disposal.
 include(GoogleTest)
 # Add all tests defined with googletest to the CMake metadata so that these tests are run upon a call to ctest in the test projects' binary directory.
