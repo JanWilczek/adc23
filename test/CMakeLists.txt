@@ -15,6 +15,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../source
         ${AUDIOFILE_SOURCE_DIR}
+        ${CSVWRITER_SOURCE_DIR}/include
         ${GOOGLETEST_SOURCE_DIR}/googletest/include)
 
 # Thanks to the fact that we link against the gtest_main library, we don't have to write the main function ourselves.

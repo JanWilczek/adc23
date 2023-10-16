@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 import matplotlib.pyplot as plt
 import soundfile as sf
+import numpy as np
 
 
 def main():
@@ -16,6 +17,11 @@ def main():
 
     plt.figure()
     plt.plot(data)
+
+    dft_data = np.loadtxt(root_repo_path / "dft_data.csv", delimiter=";", skiprows=1)
+
+    plt.figure()
+    plt.stem(dft_data[:, 0], dft_data[:, 1])
     plt.show()
 
 

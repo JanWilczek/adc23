@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <AudioFile.h>
 #include <numbers>
+#include <CSVWriter.h>
 
 namespace test {
 TEST(OutputTest, GenerateSine) {
@@ -27,5 +28,19 @@ TEST(OutputTest, GenerateSine) {
   ASSERT_TRUE(audioFile.save("sine.wav"));
 }
 
-TEST(OutputTest, GenerateCSV) {}
+TEST(OutputTest, GenerateCSV) {
+  // some fancy audio processing, FFTs, etc...
+
+  // write the output CSV
+  CSVWriter csv;
+  csv.enableAutoNewRow(2);
+  csv << "Frequency [Hz]"
+      << "Magnitude";
+  csv << 100 << 0.1f;
+  csv << 200 << 0.2f;
+  csv << 300 << 0.3f;
+  csv << 400 << 0.2f;
+  csv << 500 << 0.1f;
+  csv.writeToFile("dft_data.csv");
+}
 }  // namespace test

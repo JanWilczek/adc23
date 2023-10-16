@@ -39,6 +39,13 @@ CPMAddPackage(
     SOURCE_DIR ${LIB_DIR}/audiofile
 )
 
+CPMAddPackage(
+    NAME CSVWRITER
+    GITHUB_REPOSITORY al-eax/CSVWriter
+    GIT_TAG efaa5f1269ad7ff6e8fdbe3837a4e9726bdb2561
+    SOURCE_DIR ${LIB_DIR}/csvwriter
+)
+
 # This command allows running tests from the "build" folder (the one where CMake generates the project to).
 enable_testing()
 
