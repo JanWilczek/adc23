@@ -1,3 +1,8 @@
+*.wav
+*.pptx
+*.csv
+*.md
+
 .vs
 .vscode
 libs/
