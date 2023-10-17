@@ -22,6 +22,15 @@ def main():
 
     plt.figure()
     plt.stem(dft_data[:, 0], dft_data[:, 1])
+
+    data, fs = sf.read(root_repo_path / 'audio_player_output.wav')
+    assert data.shape[1] == 2
+
+    plt.figure()
+    plt.subplot(211)
+    plt.plot(data[:, 0])
+    plt.subplot(212)
+    plt.plot(data[:, 1])
     plt.show()
 
 

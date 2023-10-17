@@ -14,7 +14,7 @@ float FractionalDelayLine::popSample() {
   if (readHead < 0) {
     readHead += std::ssize(buffer);
   }
-  auto truncatedReadHead = static_cast<int>(std::floor(readHead));
+  const auto truncatedReadHead = static_cast<int>(std::floor(readHead));
   auto truncatedReadHeadPlusOne =
       static_cast<int>(std::ceil(readHead));  // truncatedReadHead + 1;
   const auto truncatedReadHeadWeight =

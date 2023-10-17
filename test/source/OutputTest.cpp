@@ -2,6 +2,7 @@
 #include <AudioFile.h>
 #include <numbers>
 #include <CSVWriter.h>
+#include <AudioPlayerExample.h>
 
 namespace test {
 TEST(OutputTest, GenerateSine) {
@@ -42,5 +43,34 @@ TEST(OutputTest, GenerateCSV) {
   csv << 400 << 0.2f;
   csv << 500 << 0.1f;
   csv.writeToFile("dft_data.csv");
+}
+
+TEST(OutputTest, AudioPlayerExample) {
+  AudioFile<double> audioFile;
+  AudioFile<double>::AudioBuffer buffer;
+
+  int numChannels = 2;
+  buffer.resize(numChannels);
+
+  int numSamplesPerChannel = 100;
+  buffer[0].resize(numSamplesPerChannel);
+  buffer[1].resize(numSamplesPerChannel);
+
+  float sampleRate = 44100.f;
+
+  auto outputData = std::vector<float>(numSamplesPerChannel * numChannels, 0.f);
+  example::AudioPlayer audioPlayer{sampleRate, numChannels};
+
+  audioPlayer.onAudioReady(nullptr, reinterpret_cast<void*>(outputData.data()),
+                           numSamplesPerChannel - 1);
+
+  for (int i = 0; i < numSamplesPerChannel; i++) {
+    buffer[0][i] = outputData[i * numChannels];
+    buffer[1][i] = outputData[i * numChannels + 1];
+  }
+
+  ASSERT_TRUE(audioFile.setAudioBuffer(buffer));
+  audioFile.setSampleRate(static_cast<uint32_t>(sampleRate));
+  ASSERT_TRUE(audioFile.save("audio_player_output.wav"));
 }
 }  // namespace test
