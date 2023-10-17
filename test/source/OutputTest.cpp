@@ -6,26 +6,26 @@
 
 namespace test {
 TEST(OutputTest, GenerateSine) {
-  AudioFile<double> audioFile;
-  AudioFile<double>::AudioBuffer buffer;
+  AudioFile<float> audioFile;
+  AudioFile<float>::AudioBuffer buffer;
 
-  int numChannels = 1;
-  buffer.resize(numChannels);
+  constexpr auto channelCount = 1;
+  buffer.resize(channelCount);
 
-  int numSamplesPerChannel = 100;
-  buffer[0].resize(numSamplesPerChannel);
+  constexpr auto samplesPerChannel = 100;
+  buffer[0].resize(samplesPerChannel);
 
-  float sampleRate = 44100.f;
-  float frequency = 440.f;
+  constexpr auto sampleRate = 44100.f;
+  constexpr auto frequency = 440.f;
 
-  for (int i = 0; i < numSamplesPerChannel; i++) {
+  for (int i = 0; i < samplesPerChannel; i++) {
     float sample = std::sin(2. * std::numbers::pi_v<float> * frequency *
                             static_cast<float>(i) / sampleRate);
     buffer[0][i] = sample * 0.5f;
   }
 
   ASSERT_TRUE(audioFile.setAudioBuffer(buffer));
-  audioFile.setSampleRate(sampleRate);
+  audioFile.setSampleRate(static_cast<uint32_t>(sampleRate));
   ASSERT_TRUE(audioFile.save("sine.wav"));
 }
 
@@ -46,27 +46,30 @@ TEST(OutputTest, GenerateCSV) {
 }
 
 TEST(OutputTest, AudioPlayerExample) {
-  AudioFile<double> audioFile;
-  AudioFile<double>::AudioBuffer buffer;
+  AudioFile<float> audioFile;
+  AudioFile<float>::AudioBuffer buffer;
 
-  int numChannels = 2;
-  buffer.resize(numChannels);
+  constexpr auto channelCount = 2;
+  buffer.resize(channelCount);
 
-  int numSamplesPerChannel = 100;
-  buffer[0].resize(numSamplesPerChannel);
-  buffer[1].resize(numSamplesPerChannel);
+  constexpr auto samplesPerChannel = 100;
+  buffer[0].resize(samplesPerChannel);
+  buffer[1].resize(samplesPerChannel);
 
-  float sampleRate = 44100.f;
+  constexpr auto sampleRate = 44100.f;
 
-  auto outputData = std::vector<float>(numSamplesPerChannel * numChannels, 0.f);
-  example::AudioPlayer audioPlayer{sampleRate, numChannels};
+  auto outputData = std::vector<float>(samplesPerChannel * channelCount, 0.f);
+  example::AudioPlayer audioPlayer{sampleRate, channelCount};
 
   audioPlayer.onAudioReady(nullptr, reinterpret_cast<void*>(outputData.data()),
-                           numSamplesPerChannel - 1);
+                           samplesPerChannel - 1);
 
-  for (int i = 0; i < numSamplesPerChannel; i++) {
-    buffer[0][i] = outputData[i * numChannels];
-    buffer[1][i] = outputData[i * numChannels + 1];
+  // write to audio_player_output.wav
+  //...
+
+  for (int i = 0; i < samplesPerChannel; i++) {
+    buffer[0][i] = outputData[i * channelCount];
+    buffer[1][i] = outputData[i * channelCount + 1];
   }
 
   ASSERT_TRUE(audioFile.setAudioBuffer(buffer));
