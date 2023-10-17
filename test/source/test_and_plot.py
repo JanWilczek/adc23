@@ -11,7 +11,8 @@ def main():
     root_repo_path = current_dir_path.parents[1]
     print(str(root_repo_path))
     test_executable_path = Path('build') / 'test' / 'Debug' / 'ExamplesTest.exe'
-    ret = os.system(f'cd {root_repo_path} && cmake -S . -B build && cmake --build build && {test_executable_path} --gtest_filter="OutputTest.*"')
+    ret = os.system(f'cd {root_repo_path} && cmake -S . -B build && cmake --build build &&'
+                    f' {test_executable_path} --gtest_filter="OutputTest.*"')
 
     data, fs = sf.read(root_repo_path / 'sine.wav')
 
