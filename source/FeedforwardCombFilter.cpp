@@ -1,4 +1,4 @@
-#include "FeedForwardFilter.h"
+#include "FeedforwardCombFilter.h"
 
 namespace CF {
 

@@ -60,7 +60,7 @@ endif()
 add_library(examples STATIC
     source/FractionalDelayLine.cpp
     source/DelayLine.cpp
-    source/FeedForwardFilter.cpp)
+    source/FeedforwardCombFilter.cpp)
 
 # Adds all the targets configured in the "test" folder.
 add_subdirectory(test)

@@ -1,5 +1,5 @@
 
-#include "FeedForwardFilter.h"
+#include "FeedforwardCombFilter.h"
 #include <gtest/gtest.h>
 #include <cmath>
 #include <iostream>
@@ -25,7 +25,7 @@ std::array<float, SIGNAL_SIZE> generateSineWithPeriodOf(float samples) {
   return signal;
 }
 
-TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
+TEST(FeedforwardCombFilter, DelayByHalfPeriodResultsInPhaseCancellation) {
   // instantiate the feedforward filter
   CF::FeedForwardCombFilter ffcf;
   auto signal = generateSineWithPeriodOf(10.f);
