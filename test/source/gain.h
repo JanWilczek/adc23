@@ -1,4 +1,6 @@
+// gain.h
 #pragma once
+#include <vector>
 
 void apply_gain(std::vector<float>& samples) {
   for (auto& sample : samples) {
