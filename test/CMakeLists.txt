@@ -8,7 +8,8 @@ enable_testing()
 # Creates the test console application.
 add_executable(${PROJECT_NAME}
     source/FractionalDelayLineTest.cpp
-    source/OutputTest.cpp)
+    source/OutputTest.cpp
+    source/FeedforwardCombFilterTest.cpp)
 
 # Sets the necessary include directories: ours, JUCE's, and googletest's.
 target_include_directories(${PROJECT_NAME}
