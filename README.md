@@ -1,4 +1,4 @@
-# 🐺 WolfSound's Audio Plugin Template
+# ADC 2023 Talk
 
 Want to create an audio plugin (e.g., a VST3 plugin) with C++ but don't know how to go about?
 
@@ -55,3 +55,14 @@ pre-commit install
 (for this you may need to install `pre-commit` with `pip`: `pip install pre-commit`).
 
 Don't forget to change "YourPluginName" to, well, your plugin name everywhere 😉
+
+## Python Setup
+
+In the main repo run
+
+```bash
+$ python -m venv WORK
+$ WORK\Scripts\activate.bat
+(WORK) $ "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+(WORK) $ python -m pip install cppyy numpy matplotlib
+```
