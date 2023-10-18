@@ -3,28 +3,32 @@
 #include <gtest/gtest.h>
 #include <cmath>
 #include <iostream>
-#include <cassert>
+#include <numbers>
 
 namespace test {
-constexpr auto M_PI = 3.141592653589793238462643383279502884L;
+constexpr auto PI = std::numbers::pi_v<float>;
+constexpr auto SIGNAL_SIZE = 20;
 
-TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
-  // instantiate the feedforward filter
-  CF::FeedForwardFilter feedforwardFilter;
-  std::array<float, 20> signal{};
-  float rads = M_PI / 180;
-
+std::array<float, SIGNAL_SIZE> generateSineWithPeriodOf(float samples) {
   constexpr auto period = 10.f;
   constexpr auto frequency = 1.f / period;
   constexpr auto samplingRate = 1.f;
   constexpr auto amplitude = 1.0f;
 
   // generate a sine with the period of 10 samples
-  for (int i = 0; i < std::ssize(signal); i++) {
-    signal[i] = amplitude * std::sin(2 * M_PI * frequency *
+  std::array<float, SIGNAL_SIZE> signal{};
+  for (int i = 0; i < SIGNAL_SIZE; i++) {
+    signal[i] = amplitude * std::sin(2 * PI * frequency *
                                      static_cast<float>(i) / samplingRate);
-    // std::cout << signal[i] << std::endl;
   }
+
+  return signal;
+}
+
+TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
+  // instantiate the feedforward filter
+  CF::FeedForwardFilter feedforwardFilter;
+  auto signal = generateSineWithPeriodOf(10.f);
 
   // set the delay to 5 samples and gain to 1
   feedforwardFilter.setDelay(5);
@@ -38,7 +42,7 @@ TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
 
   // the output after the first half of the period should be all zeros
   for (int i = 5; i < std::ssize(signal); i++) {
-    ASSERT_LT(std::abs(signal[i]), 1e-7);
+    ASSERT_NEAR(signal[i], 0.0, 1e-6);
   }
 }
 }  // namespace test
