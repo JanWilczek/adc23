@@ -2,7 +2,7 @@
 #include "DelayLine.h"
 
 namespace CF {
-class FeedForwardFilter {
+class FeedForwardCombFilter {
 public:
   float process(float sample);
   void setDelay(int newDelay) { this->delay = newDelay; }

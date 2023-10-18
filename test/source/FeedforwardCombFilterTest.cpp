@@ -27,16 +27,16 @@ std::array<float, SIGNAL_SIZE> generateSineWithPeriodOf(float samples) {
 
 TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
   // instantiate the feedforward filter
-  CF::FeedForwardFilter feedforwardFilter;
+  CF::FeedForwardCombFilter ffcf;
   auto signal = generateSineWithPeriodOf(10.f);
 
   // set the delay to 5 samples and gain to 1
-  feedforwardFilter.setDelay(5);
-  feedforwardFilter.setGain(1);
+  ffcf.setDelay(5);
+  ffcf.setGain(1);
 
   // filter the sine
   for (int i = 0; i < std::ssize(signal); i++) {
-    signal[i] = feedforwardFilter.process(signal[i]);
+    signal[i] = ffcf.process(signal[i]);
   }
 
   // the output after the first half of the period should be all zeros

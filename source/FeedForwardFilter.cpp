@@ -2,7 +2,7 @@
 
 namespace CF {
 
-float FeedForwardFilter::process(float sample) {
+float FeedForwardCombFilter::process(float sample) {
   delayLine.setDelay(delay);
   const auto delayedSample = delayLine.popSample();
   delayLine.pushSample(sample);
