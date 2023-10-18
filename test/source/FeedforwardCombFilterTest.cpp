@@ -36,8 +36,7 @@ TEST(FeedforwardCombFilter, DelayByHalfPeriodEnablesPhaseCancellation) {
 
   // filter the sine
   for (int i = 0; i < std::ssize(signal); i++) {
-    const auto combfiltersample = feedforwardFilter.process(signal[i]);
-    signal[i] = combfiltersample;
+    signal[i] = feedforwardFilter.process(signal[i]);
   }
 
   // the output after the first half of the period should be all zeros
