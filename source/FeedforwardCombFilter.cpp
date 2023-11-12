@@ -7,7 +7,7 @@ float FeedForwardCombFilter::process(float sample) {
   const auto delayedSample = delayLine.popSample();
   delayLine.pushSample(sample);
 
-  const auto outputSample = gain * delayedSample + sample;
+  const auto outputSample = delayedGain * delayedSample + directGain * sample;
   // Scale output sample to stay in the [-1, 1] range
   const auto scaledOutputSample = 0.5f * outputSample;
   return scaledOutputSample;

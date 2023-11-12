@@ -4,7 +4,7 @@
 namespace DL {
 class FractionalDelayLine {
 public:
-  float popSample();
+  float readSample();
   float popSampleNew();
   void pushSample(float inputSample);
   void setDelay(float newDelay);

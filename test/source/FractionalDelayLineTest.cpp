@@ -11,18 +11,18 @@ TEST(Flanger, FractionalDelay) {
   delayLine.pushSample(4);
 
   delayLine.setDelay(100);
-  ASSERT_FLOAT_EQ(0, delayLine.popSample());
+  ASSERT_FLOAT_EQ(0, delayLine.readSample());
 
   delayLine.setDelay(1.5f);
-  ASSERT_FLOAT_EQ(2.5f, delayLine.popSample());
+  ASSERT_FLOAT_EQ(2.5f, delayLine.readSample());
 
   delayLine.setDelay(2.3f);
-  ASSERT_FLOAT_EQ(1.7f, delayLine.popSample());
+  ASSERT_FLOAT_EQ(1.7f, delayLine.readSample());
 
   delayLine.setDelay(3.3f);
-  ASSERT_NEAR(0.7f, delayLine.popSample(), 0.001f);
+  ASSERT_NEAR(0.7f, delayLine.readSample(), 0.001f);
 
   delayLine.setDelay(2.f);
-  ASSERT_FLOAT_EQ(2.f, delayLine.popSample());
+  ASSERT_FLOAT_EQ(2.f, delayLine.readSample());
 }
 }  // namespace test

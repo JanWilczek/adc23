@@ -30,9 +30,10 @@ TEST(FeedforwardCombFilter, DelayByHalfPeriodResultsInPhaseCancellation) {
   CF::FeedForwardCombFilter ffcf;
   auto signal = generateSineWithPeriodOf(10.f);
 
-  // set the delay to 5 samples and gain to 1
+  // set the delay to 5 samples and both gains to 1
   ffcf.setDelay(5);
-  ffcf.setGain(1);
+  ffcf.setDelayedGain(1.f);
+  ffcf.setDirectGain(1.f);
 
   // filter the sine
   for (int i = 0; i < std::ssize(signal); i++) {

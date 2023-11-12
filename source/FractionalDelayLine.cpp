@@ -9,7 +9,7 @@ using namespace std;
 
 namespace DL {
 
-float FractionalDelayLine::popSample() {
+float FractionalDelayLine::readSample() {
   auto readHead = writeHead - 1 - delay;
   if (readHead < 0) {
     readHead += std::ssize(buffer);
