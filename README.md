@@ -10,7 +10,7 @@
 
 [Slides](Slides.pdf)
 
-[DSP Pro Online Course](https://wolfsoundacademy.com/dsp-pro): Your Structured Learning Path of Digital Audio Signal Processing From a Complete Beginner to a Well-Versed Professional
+[DSP Pro Online Course](https://wolfsoundacademy.com/dsp-pro): Your structured learning path of digital audio signal processing from a complete beginner to a well-versed professional
 
 [Audio plugin template](https://github.com/JanWilczek/audio-plugin-template): A template repo with JUCE, CMake and CPM package manager set up, including unit tests of your audio processor (I use it for all my audio projects, also this repo)
 
