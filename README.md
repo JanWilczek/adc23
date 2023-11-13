@@ -6,14 +6,17 @@
 
 ![thumbnail](img/Bug-free%20audio%20code-_Title%20Card%20copy.png)
 
-### TODO:
+## Important links
 
-1. Thumbnail
-1. Link to the course
-1. Link to the slides
-1. Link to audio plugin template
-1. Disclaimer on code quality and contributions
-1. License
+[Slides](Slides.pdf)
+
+[DSP Pro Online Course](https://wolfsoundacademy.com/dsp-pro): Your Structured Learning Path of Digital Audio Signal Processing From a Complete Beginner to a Well-Versed Professional
+
+[Audio plugin template](https://github.com/JanWilczek/audio-plugin-template): A template repo with JUCE, CMake and CPM package manager set up, including unit tests of your audio processor (I use it for all my audio projects)
+
+## Disclaimer
+
+This repo contains example code which is **not** reference code; the included examples are meant to illustrate certain concepts and are not necessarily what I consider clean code. At the same time, it is code that you may encounter in various codebases so these examples are "real-world".
 
 ## C++ Setup (Cross-Platform)
 
